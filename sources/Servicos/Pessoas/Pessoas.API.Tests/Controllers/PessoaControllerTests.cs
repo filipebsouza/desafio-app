@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using Pessoas.Dominio.Dtos;
-using Pessoas.Infra.Contestos;
+using Pessoas.Infra.Contextos;
 using Xunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
@@ -143,8 +143,7 @@ namespace Pessoas.API.Tests.Controllers
 
             //Then
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-            Assert.NotNull(retorno);
-            Assert.NotNull(retorno.Id);
+            Assert.NotNull(retorno);            
             Assert.Equal(dto.Nome, retorno.Nome);
             Assert.Equal(dto.DataDeNascimento, retorno.DataDeNascimento);
         }

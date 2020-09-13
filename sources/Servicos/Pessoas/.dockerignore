@@ -1,0 +1,5 @@
+**/bin/
+**/obj/
+Dockerfile
+[b|B]in
+[O|o]bj
