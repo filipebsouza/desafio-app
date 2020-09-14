@@ -7,23 +7,24 @@ using Bogus;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
-using Familias.Dominio.Dtos;
-using Familias.Infra.Contextos;
+using Pontos.Dominio.Dtos;
+using Pontos.Infra.Contextos;
 using Xunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Pontos.Dominio.Entidades;
 
-namespace Familias.API.Tests.Controllers
+namespace Pontos.API.Tests.Controllers
 {
-    public class FamiliaControllerTests
+    public class PontuacaoPorFamiliaControllerTests
     {
         private readonly string _sufixoDeTeste;
         private readonly Faker _faker;
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
-        public FamiliaControllerTests()
+        public PontuacaoPorFamiliaControllerTests()
         {
             _sufixoDeTeste = "_TEST";
             _faker = new Faker();
@@ -32,11 +33,11 @@ namespace Familias.API.Tests.Controllers
                     .UseStartup<Startup>()
                     .ConfigureServices(services =>
                     {
-                        services.AddDbContext<FamiliaContexto>(opt => opt.UseInMemoryDatabase($"FamiliaDB{_sufixoDeTeste}"));
+                        services.AddDbContext<PontoContexto>(opt => opt.UseInMemoryDatabase($"PontoDB{_sufixoDeTeste}"));
                     })
                 );
             _client = _server.CreateClient();
-            _client.BaseAddress = new Uri("http://localhost:5003");
+            _client.BaseAddress = new Uri("http://localhost:5004");
         }
 
         private async Task<(HttpResponseMessage, FamiliaDto)> PostFamilia(FamiliaDto dto)
@@ -44,7 +45,7 @@ namespace Familias.API.Tests.Controllers
             var json = JsonConvert.SerializeObject(dto);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _client.PostAsync("/api/familia", data);
+            var response = await _client.PostAsync("/api/pontuacaoporfamilia", data);
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
 
@@ -64,21 +65,24 @@ namespace Familias.API.Tests.Controllers
                     Id = Guid.NewGuid(),
                     Nome = "João da Silva Junior",
                     DataDeNascimento = new DateTime(1990, 08, 03),
-                    DescricaoTipoDaPessoa = "Cônjuge"
+                    DescricaoTipoDaPessoa = "Cônjuge",
+                    TipoDaPessoa = (int)TipoDaPessoaEnum.Conjuge
                 },
                 new PessoaDto
                 {
                     Id = Guid.NewGuid(),
                     Nome = "Milena dos Santos Villamayor",
                     DataDeNascimento = new DateTime(1990, 08, 12),
-                    DescricaoTipoDaPessoa = "Dependente"
+                    DescricaoTipoDaPessoa = "Dependente",
+                    TipoDaPessoa = (int)TipoDaPessoaEnum.Dependente
                 },
                 new PessoaDto
                 {
                     Id = Guid.NewGuid(),
                     Nome = "É um teste Junior",
                     DataDeNascimento = new DateTime(1956, 09, 04),
-                    DescricaoTipoDaPessoa = "Cônjuge"
+                    DescricaoTipoDaPessoa = "Cônjuge",
+                    TipoDaPessoa = (int)TipoDaPessoaEnum.Conjuge
                 }
             };
 
@@ -117,14 +121,16 @@ namespace Familias.API.Tests.Controllers
                     Id = Guid.NewGuid(),
                     Nome = "Getúlio de Lima",
                     DataDeNascimento = new DateTime(1990, 08, 03),
-                    DescricaoTipoDaPessoa = "Cônjuge"
+                    DescricaoTipoDaPessoa = "Cônjuge",
+                    TipoDaPessoa = (int)TipoDaPessoaEnum.Conjuge
                 },
                 new PessoaDto
                 {
                     Id = Guid.NewGuid(),
                     Nome =  "Alguém comum",
                     DataDeNascimento = new DateTime(1990, 08, 12),
-                    DescricaoTipoDaPessoa = "Dependente"
+                    DescricaoTipoDaPessoa = "Dependente",
+                    TipoDaPessoa = (int)TipoDaPessoaEnum.Dependente
                 },
             };
 
@@ -151,13 +157,13 @@ namespace Familias.API.Tests.Controllers
         }
 
         [Fact]
-        public async Task DeveListarFamilias()
+        public async Task DeveListarFamiliasComPontuacao()
         {
             //Given
             await SetupListarFamilias();
 
             //When
-            var response = await _client.GetAsync("/api/familia");
+            var response = await _client.GetAsync("/api/pontuacaoporfamilia");
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
             var retorno = JsonConvert.DeserializeObject<List<FamiliaDto>>(responseString);
@@ -169,7 +175,7 @@ namespace Familias.API.Tests.Controllers
         }
 
         [Fact]
-        public async Task DeveInserirFamilia()
+        public async Task DeveInserirPonto()
         {
             //Given
             var pessoaId = Guid.NewGuid();
@@ -182,7 +188,8 @@ namespace Familias.API.Tests.Controllers
                         Id = pessoaId,
                         Nome = _faker.Person.FullName,
                         DataDeNascimento = _faker.Date.Past().Date,
-                        DescricaoTipoDaPessoa = "Cônjuge"
+                        DescricaoTipoDaPessoa = "Cônjuge",
+                        TipoDaPessoa = (int)TipoDaPessoaEnum.Conjuge
                     },
                 },
                 RendaPorPessoas = new List<RendaPorPessoaDto>
@@ -201,7 +208,6 @@ namespace Familias.API.Tests.Controllers
             //Then
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             Assert.NotNull(retorno);
-            Assert.Equal(0, dto.Status); //Cadastro completo            
         }
     }
 }
