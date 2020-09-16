@@ -52,7 +52,7 @@ namespace Rendas.API
             services.AddScoped(typeof(IListagemDeRendaPorPessoas), typeof(ListagemDeRendaPorPessoas));
             // Repositórios
             services.AddScoped(typeof(IRendaPorPessoaRepositorio), typeof(RendaPorPessoaRepositorio));
-            // Integrações
+            // Mensageria
             services.AddScoped(typeof(ConfigRabbitMQ));
             services.AddScoped(typeof(ConfigSendMessageRabbitMQ));
             services.AddScoped(typeof(ConnectionFactory));

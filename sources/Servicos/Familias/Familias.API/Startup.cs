@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +24,7 @@ using Familias.Dominio.Servicos;
 using Familias.Infra.Consultas;
 using Familias.Infra.Contextos;
 using Familias.Infra.Repositorios;
+using Familias.Dominio.Contratos;
 
 namespace Familias.API
 {
@@ -42,6 +43,9 @@ namespace Familias.API
             // Base
             services.AddScoped(typeof(INotificadorBase), typeof(NotificadorBase));
             // Serviços
+            services.AddScoped(typeof(PessoasContrato));
+            services.AddScoped(typeof(RendaPorPessoasContrato));
+            services.AddScoped(typeof(IValidadorDePessoaJahInformadaEmOutraFamilia), typeof(ValidadorDePessoaJahInformadaEmOutraFamilia));
             services.AddScoped(typeof(IArmazenadorDeFamilia), typeof(ArmazenadorDeFamilia));
             // Consultas
             services.AddScoped(typeof(IListagemDeFamilias), typeof(ListagemDeFamilias));

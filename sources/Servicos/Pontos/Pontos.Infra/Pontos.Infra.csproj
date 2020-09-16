@@ -2,11 +2,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pontos.Dominio\Pontos.Dominio.csproj" />
+    <ProjectReference Include="..\Base\Base.Dominio\Base.Dominio.csproj" />
+    <ProjectReference Include="..\Base\Base.Infra\Base.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
   </ItemGroup>
 
   <PropertyGroup>

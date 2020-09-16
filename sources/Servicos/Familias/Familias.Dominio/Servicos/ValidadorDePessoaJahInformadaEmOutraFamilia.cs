@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Familias.Dominio.Repositorios;
 
 namespace Familias.Dominio.Servicos

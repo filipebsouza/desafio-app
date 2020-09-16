@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Familias.Dominio.Contratos;
 using Familias.Dominio.Dtos;
 using Familias.Dominio.Entidades;

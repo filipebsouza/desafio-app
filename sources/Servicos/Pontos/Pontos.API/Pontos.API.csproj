@@ -4,6 +4,7 @@
     <ProjectReference Include="..\Pontos.Dominio\Pontos.Dominio.csproj" />
     <ProjectReference Include="..\Pontos.Infra\Pontos.Infra.csproj" />
     <ProjectReference Include="..\Base\Base.Dominio\Base.Dominio.csproj" />
+    <ProjectReference Include="..\Base\Base.Infra\Base.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

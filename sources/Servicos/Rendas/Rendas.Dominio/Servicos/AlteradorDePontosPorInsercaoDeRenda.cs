@@ -16,7 +16,7 @@ namespace Rendas.Dominio.Servicos
             IEnviarParaFilaBase<RendaPorPessoaDto> enviarRendaParaPontuacao
         ) : base(notificador)
         {
-            _configuracaoDeEnvioDeMensagem = configuracaoDeEnvioDeMensagem ?? new ConfigSendMessageRabbitMQ
+            _configuracaoDeEnvioDeMensagem = new ConfigSendMessageRabbitMQ
             {
                 Queue = nomeDaFila
             };

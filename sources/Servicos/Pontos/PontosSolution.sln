@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pontos.Dominio.Tests", "Pon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pontos.Infra", "Pontos.Infra\Pontos.Infra.csproj", "{8BC995CC-4AE8-4833-AF22-966997F69D00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base.Infra", "Base\Base.Infra\Base.Infra.csproj", "{D154BA93-6F19-4036-86FD-97E9560CE5AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,8 +104,21 @@ Global
 		{8BC995CC-4AE8-4833-AF22-966997F69D00}.Release|x64.Build.0 = Release|Any CPU
 		{8BC995CC-4AE8-4833-AF22-966997F69D00}.Release|x86.ActiveCfg = Release|Any CPU
 		{8BC995CC-4AE8-4833-AF22-966997F69D00}.Release|x86.Build.0 = Release|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Debug|x64.Build.0 = Debug|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Release|x64.ActiveCfg = Release|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Release|x64.Build.0 = Release|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{094195B9-1673-4491-8843-DB3A16F89BA1} = {9DFBE2F4-146B-47D7-A10D-C2F070E1A4EB}
+		{D154BA93-6F19-4036-86FD-97E9560CE5AF} = {9DFBE2F4-146B-47D7-A10D-C2F070E1A4EB}
 	EndGlobalSection
 EndGlobal

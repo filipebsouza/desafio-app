@@ -6,6 +6,9 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using Base.Dominio;
+using Base.Dominio.Mensageria;
+using Base.Dominio.Notificacoes;
+using Base.Infra.Mensageria;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,11 +23,14 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Pontos.API.Filters;
 using Pontos.Dominio.Contratos;
+using Pontos.Dominio.Dtos;
 using Pontos.Dominio.Repositorios;
 using Pontos.Dominio.Servicos;
 using Pontos.Infra.Consultas;
 using Pontos.Infra.Contextos;
+using Pontos.Infra.Mensageria;
 using Pontos.Infra.Repositorios;
+using RabbitMQ.Client;
 
 namespace Pontos.API
 {
@@ -50,6 +56,10 @@ namespace Pontos.API
             services.AddScoped(typeof(IListagemDeFamiliasPorPontuacao), typeof(ListagemDeFamiliasPorPontuacao));
             // Repositórios
             services.AddScoped(typeof(IPontuacaoPorFamiliaRepositorio), typeof(PontuacaoPorFamiliaRepositorio));
+            // Mensageria
+            services.AddScoped(typeof(ConfigRabbitMQ));
+            services.AddScoped(typeof(ConnectionFactory));
+            services.AddScoped(typeof(IConfigQueueRabbitMQ), typeof(ConfigQueueServicoPontosAPI));            
 
             services.AddDbContext<PontoContexto>(opt => opt.UseInMemoryDatabase("PontoDB"));
 
@@ -74,6 +84,8 @@ namespace Pontos.API
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 s.IncludeXmlComments(xmlPath);
             });
+
+            services.AddHostedService<ReceberDaFila>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
