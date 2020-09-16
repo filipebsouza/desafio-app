@@ -30,6 +30,13 @@
 
 ![Arquitetura 3](./resources/images/03.png "Exemplo de comunicação com a fila")
 
+### Tecnologias utilizadas
+
+* .NET Core 3.1
+* EF Core (In Memory)
+* xUnit
+* RabbitMQ
+
 ### Qualidade da solução
 
 * Para garantir o mínimo de qualidade da solução ofertada, testes de unidade foram implementados para cobrir as principais regras negócio.
@@ -38,6 +45,7 @@
 ### Para onde progredir?
 
 * Várias implementações poderiam ser aprimoradas:
+  * Refatorar as duplicidades de código.
   * Total containerização das aplicações (esboço iniciado).
   * Solução para builds automatizados, no github actions talvez.
   * Orquestração das aplicações para tolerar falhas e simplificar o deploy.
