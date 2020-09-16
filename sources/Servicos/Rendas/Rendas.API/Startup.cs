@@ -5,7 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Mensageria;
+using Base.Dominio.Notificacoes;
+using Base.Infra.Mensageria;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +20,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using RabbitMQ.Client;
 using Rendas.API.Filters;
+using Rendas.Dominio.Dtos;
 using Rendas.Dominio.Repositorios;
 using Rendas.Dominio.Servicos;
 using Rendas.Infra.Consultas;
@@ -43,10 +47,16 @@ namespace Rendas.API
             services.AddScoped(typeof(INotificadorBase), typeof(NotificadorBase));
             // Serviços
             services.AddScoped(typeof(IArmazenadorDeRendaPorPessoa), typeof(ArmazenadorDeRendaPorPessoa));
+            services.AddScoped(typeof(IAlteradorDePontosPorInsercaoDeRenda), typeof(AlteradorDePontosPorInsercaoDeRenda));
             // Consultas
             services.AddScoped(typeof(IListagemDeRendaPorPessoas), typeof(ListagemDeRendaPorPessoas));
             // Repositórios
             services.AddScoped(typeof(IRendaPorPessoaRepositorio), typeof(RendaPorPessoaRepositorio));
+            // Integrações
+            services.AddScoped(typeof(ConfigRabbitMQ));
+            services.AddScoped(typeof(ConfigSendMessageRabbitMQ));
+            services.AddScoped(typeof(ConnectionFactory));
+            services.AddScoped(typeof(IEnviarParaFilaBase<RendaPorPessoaDto>), typeof(EnviarParaFilaBase<RendaPorPessoaDto>));
 
             services.AddDbContext<RendaPorPessoaContexto>(opt => opt.UseInMemoryDatabase("RendaPorPessoaDB"));
 
@@ -99,6 +109,6 @@ namespace Rendas.API
                 s.RoutePrefix = "swagger";
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "Api Example");
             });
-        }        
+        }
     }
 }

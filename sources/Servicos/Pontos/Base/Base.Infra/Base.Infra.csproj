@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flunt" Version="1.0.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Base\Base.Dominio\Base.Dominio.csproj" />
+    <ProjectReference Include="..\Base.Dominio\Base.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

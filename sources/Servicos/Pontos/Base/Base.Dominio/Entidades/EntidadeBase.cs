@@ -1,6 +1,7 @@
 ﻿using System;
+using Base.Dominio.Notificacoes;
 
-namespace Base.Dominio
+namespace Base.Dominio.Entidades
 {
     public class EntidadeBase : NotificadorBase
     {

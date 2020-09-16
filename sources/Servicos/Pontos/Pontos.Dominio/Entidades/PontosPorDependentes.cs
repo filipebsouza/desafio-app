@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Base.Dominio;
+using Base.Dominio.Entidades;
 
 namespace Pontos.Dominio.Entidades
 {

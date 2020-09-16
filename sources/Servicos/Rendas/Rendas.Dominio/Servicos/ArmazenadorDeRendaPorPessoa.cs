@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Rendas.Dominio.Contratos;
 using Rendas.Dominio.Dtos;
 using Rendas.Dominio.Entidades;
@@ -10,10 +10,16 @@ namespace Rendas.Dominio.Servicos
     public class ArmazenadorDeRendaPorPessoa : ServicoDeDominioBase, IArmazenadorDeRendaPorPessoa
     {
         private readonly IRendaPorPessoaRepositorio _rendaPorPessoaRepositorio;
+        private readonly IAlteradorDePontosPorInsercaoDeRenda _alteradorDePontosPorInsercaoDeRenda;
 
-        public ArmazenadorDeRendaPorPessoa(INotificadorBase notificador, IRendaPorPessoaRepositorio rendaPorPessoaRepositorio) : base(notificador)
+        public ArmazenadorDeRendaPorPessoa(
+            INotificadorBase notificador,
+            IRendaPorPessoaRepositorio rendaPorPessoaRepositorio,
+            IAlteradorDePontosPorInsercaoDeRenda alteradorDePontosPorInsercaoDeRenda
+        ) : base(notificador)
         {
             _rendaPorPessoaRepositorio = rendaPorPessoaRepositorio;
+            _alteradorDePontosPorInsercaoDeRenda = alteradorDePontosPorInsercaoDeRenda;
         }
 
         public async Task<RendaPorPessoaDto> Armazenar(RendaPorPessoaDto dto)
@@ -34,13 +40,17 @@ namespace Rendas.Dominio.Servicos
             await _rendaPorPessoaRepositorio.Incluir(rendaPorPessoa);
             await _rendaPorPessoaRepositorio.Salvar();
 
-            return new RendaPorPessoaDto
+            var retorno = new RendaPorPessoaDto
             {
                 Id = rendaPorPessoa.Id,
                 PessoaId = rendaPorPessoa.PessoaId,
                 NomePessoa = rendaPorPessoa.NomePessoa,
                 Valor = rendaPorPessoa.Valor
             };
+
+            _alteradorDePontosPorInsercaoDeRenda.Alterar(retorno);
+
+            return retorno;
         }
 
         private bool ValidarDto(RendaPorPessoaDto dto)

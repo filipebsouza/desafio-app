@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Bogus;
 using Flunt.Notifications;
 using Moq;
@@ -18,6 +18,7 @@ namespace Rendas.Dominio.Tests.Servicos
         private readonly Faker _faker;
         private readonly Mock<INotificadorBase> _notificadorMock;
         private readonly Mock<IRendaPorPessoaRepositorio> _rendaPorPessoaRepositorioMock;
+        private readonly Mock<IAlteradorDePontosPorInsercaoDeRenda> _alteradorDePontosPorInsercaoDeRendaMock;
         private readonly ArmazenadorDeRendaPorPessoa _armanezadorDeRendaPorPessoa;
 
         public ArmazenadorDePessoaTests()
@@ -25,9 +26,11 @@ namespace Rendas.Dominio.Tests.Servicos
             _faker = new Faker();
             _notificadorMock = new Mock<INotificadorBase>();
             _rendaPorPessoaRepositorioMock = new Mock<IRendaPorPessoaRepositorio>();
+            _alteradorDePontosPorInsercaoDeRendaMock = new Mock<IAlteradorDePontosPorInsercaoDeRenda>();
             _armanezadorDeRendaPorPessoa = new ArmazenadorDeRendaPorPessoa(
                 _notificadorMock.Object,
-                _rendaPorPessoaRepositorioMock.Object
+                _rendaPorPessoaRepositorioMock.Object,
+                _alteradorDePontosPorInsercaoDeRendaMock.Object
             );
         }
 
@@ -48,6 +51,7 @@ namespace Rendas.Dominio.Tests.Servicos
             //Then
             _rendaPorPessoaRepositorioMock.Verify(repositorio => repositorio.Incluir(It.IsAny<RendaPorPessoa>()), Times.Once);
             _rendaPorPessoaRepositorioMock.Verify(repositorio => repositorio.Salvar(), Times.Once);
+            _alteradorDePontosPorInsercaoDeRendaMock.Verify(servico => servico.Alterar(It.IsAny<RendaPorPessoaDto>()), Times.Once);
             _notificadorMock.Verify(notificador => notificador.Notificar(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             _notificadorMock.Verify(notificador => notificador.Notificar(It.IsAny<IReadOnlyCollection<Notification>>()), Times.Never);
             Assert.NotNull(retorno);

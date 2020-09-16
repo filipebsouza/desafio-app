@@ -3,7 +3,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Rendas.Dominio\Rendas.Dominio.csproj" />
     <ProjectReference Include="..\Rendas.Infra\Rendas.Infra.csproj" />
-    <ProjectReference Include="..\..\..\Base\Base.Dominio\Base.Dominio.csproj" />
+    <ProjectReference Include="..\Base\Base.Dominio\Base.Dominio.csproj" />
+    <ProjectReference Include="..\Base\Base.Infra\Base.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-using Base.Dominio;
+using Base.Dominio.Entidades;
 using Pontos.Dominio.Contratos;
 
 namespace Pontos.Dominio.Entidades

@@ -1,4 +1,4 @@
-namespace Base.Dominio
+namespace Base.Dominio.Notificacoes
 {
     public class ServicoDeDominioBase
     {

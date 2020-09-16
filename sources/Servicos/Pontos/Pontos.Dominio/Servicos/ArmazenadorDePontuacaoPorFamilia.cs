@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Pontos.Dominio.Contratos;
 using Pontos.Dominio.Dtos;
 using Pontos.Dominio.Entidades;
