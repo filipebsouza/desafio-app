@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Base.Dominio.Mensageria
 {
-    public class ConfigSendMessageRabbitMQ
+    public class ConfigQueueRabbitMQ : IConfigQueueRabbitMQ
     {
         public string Queue { get; set; } = "main-queue";
         public bool Durable { get; set; } = true;

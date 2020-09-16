@@ -7,16 +7,16 @@ namespace Rendas.Dominio.Servicos
     public class AlteradorDePontosPorInsercaoDeRenda : ServicoDeDominioBase, IAlteradorDePontosPorInsercaoDeRenda
     {
         private readonly string nomeDaFila = "Servico_Pontos.API";
-        private readonly ConfigSendMessageRabbitMQ _configuracaoDeEnvioDeMensagem;
+        private readonly ConfigQueueRabbitMQ _configuracaoDeEnvioDeMensagem;
         private readonly IEnviarParaFilaBase<RendaPorPessoaDto> _enviarRendaParaPontuacao;
 
         public AlteradorDePontosPorInsercaoDeRenda(
             INotificadorBase notificador,
-            ConfigSendMessageRabbitMQ configuracaoDeEnvioDeMensagem,
+            ConfigQueueRabbitMQ configuracaoDeEnvioDeMensagem,
             IEnviarParaFilaBase<RendaPorPessoaDto> enviarRendaParaPontuacao
         ) : base(notificador)
         {
-            _configuracaoDeEnvioDeMensagem = new ConfigSendMessageRabbitMQ
+            _configuracaoDeEnvioDeMensagem = new ConfigQueueRabbitMQ
             {
                 Queue = nomeDaFila
             };

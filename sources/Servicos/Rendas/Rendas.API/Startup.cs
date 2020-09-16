@@ -54,7 +54,7 @@ namespace Rendas.API
             services.AddScoped(typeof(IRendaPorPessoaRepositorio), typeof(RendaPorPessoaRepositorio));
             // Mensageria
             services.AddScoped(typeof(ConfigRabbitMQ));
-            services.AddScoped(typeof(ConfigSendMessageRabbitMQ));
+            services.AddScoped(typeof(ConfigQueueRabbitMQ));
             services.AddScoped(typeof(ConnectionFactory));
             services.AddScoped(typeof(IEnviarParaFilaBase<RendaPorPessoaDto>), typeof(EnviarParaFilaBase<RendaPorPessoaDto>));
 

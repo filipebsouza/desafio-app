@@ -22,7 +22,7 @@ namespace Base.Infra.Mensageria
             };
         }
 
-        public void EnviarParaFila(ConfigSendMessageRabbitMQ configuracaoDeEnvio, ObjetoParaEnvioEmJson objetoParaEnvioEmJson)
+        public void EnviarParaFila(IConfigQueueRabbitMQ configuracaoDeEnvio, ObjetoParaEnvioEmJson objetoParaEnvioEmJson)
         {
             try
             {
