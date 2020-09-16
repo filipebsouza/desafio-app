@@ -13,6 +13,7 @@ using Xunit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using Pessoas.Dominio.Entidades;
 
 namespace Pessoas.API.Tests.Controllers
 {
@@ -61,47 +62,56 @@ namespace Pessoas.API.Tests.Controllers
                 new PessoaDto
                 {
                     Nome = $"João da Silva Junior{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1990, 08, 03)
+                    DataDeNascimento = new DateTime(1990, 08, 03),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"Milena dos Santos Villamayor{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1990, 08, 12)
+                    DataDeNascimento = new DateTime(1990, 08, 12),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"É um teste Junior{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1956, 09, 04)
+                    DataDeNascimento = new DateTime(1956, 09, 04),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"Mario Bowser Antonio{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1966, 08, 23)
+                    DataDeNascimento = new DateTime(1966, 08, 23),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"Marilda Souza{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1998, 07, 30)
+                    DataDeNascimento = new DateTime(1998, 07, 30),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"Alguém comum{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1999, 08, 04)
+                    DataDeNascimento = new DateTime(1999, 08, 04),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"Fulano de Tals{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1993, 03, 03)
+                    DataDeNascimento = new DateTime(1993, 03, 03),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"Getúlio de Lima{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1978, 08, 01)
+                    DataDeNascimento = new DateTime(1978, 08, 01),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 },
                 new PessoaDto
                 {
                     Nome = $"Neto Antunes{_sufixoDeTeste}",
-                    DataDeNascimento = new DateTime(1989, 07, 17)
+                    DataDeNascimento = new DateTime(1989, 07, 17),
+                    TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
                 }
             };
 
@@ -136,7 +146,8 @@ namespace Pessoas.API.Tests.Controllers
             var dto = new PessoaDto
             {
                 Nome = _faker.Person.FullName,
-                DataDeNascimento = _faker.Date.Past().Date
+                DataDeNascimento = _faker.Date.Past().Date,
+                TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
             };
 
             var (response, retorno) = await PostPessoa(dto);

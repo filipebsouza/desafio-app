@@ -6,6 +6,7 @@ using System.Net;
 using System.Reflection;
 using System.Threading.Tasks;
 using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -99,6 +100,6 @@ namespace Pessoas.API
                 s.RoutePrefix = "swagger";
                 s.SwaggerEndpoint("/swagger/v1/swagger.json", "Api Example");
             });
-        }        
+        }
     }
 }

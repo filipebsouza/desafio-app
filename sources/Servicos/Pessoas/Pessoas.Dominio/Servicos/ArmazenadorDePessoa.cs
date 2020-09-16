@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Pessoas.Dominio.Contratos;
 using Pessoas.Dominio.Dtos;
 using Pessoas.Dominio.Entidades;

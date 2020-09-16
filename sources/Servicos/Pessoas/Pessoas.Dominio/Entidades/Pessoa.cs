@@ -1,5 +1,5 @@
 ﻿using System;
-using Base.Dominio;
+using Base.Dominio.Entidades;
 using Pessoas.Dominio.Contratos;
 
 namespace Pessoas.Dominio.Entidades

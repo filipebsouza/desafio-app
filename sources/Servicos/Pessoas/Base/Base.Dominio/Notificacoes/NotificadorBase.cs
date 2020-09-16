@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Flunt.Notifications;
 
-namespace Base.Dominio
+namespace Base.Dominio.Notificacoes
 {
     public class NotificadorBase : Notifiable, INotificadorBase
     {

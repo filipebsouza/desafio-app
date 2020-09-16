@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Base.Dominio;
+using Base.Dominio.Notificacoes;
 using Bogus;
 using Flunt.Notifications;
 using Moq;
@@ -38,7 +38,8 @@ namespace Pessoas.Dominio.Tests.Servicos
             var dto = new PessoaDto
             {
                 Nome = _faker.Person.FullName,
-                DataDeNascimento = _faker.Date.Past().Date
+                DataDeNascimento = _faker.Date.Past().Date,
+                TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
             };
 
             //When
@@ -76,7 +77,8 @@ namespace Pessoas.Dominio.Tests.Servicos
             var dto = new PessoaDto
             {
                 Nome = nomePessoaInvalido,
-                DataDeNascimento = _faker.Date.Past().Date
+                DataDeNascimento = _faker.Date.Past().Date,
+                TipoDaPessoa = (int)_faker.PickRandom<TipoDaPessoaEnum>()
             };
 
             //When
